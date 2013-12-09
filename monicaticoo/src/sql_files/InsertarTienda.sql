@@ -1,2 +1,2 @@
-INSERT INTO tienda(nombre,telefono,direccion)
+INSERT INTO tienda (Nombre,Telefono,Direccion)
 VALUES (?,?,?);
