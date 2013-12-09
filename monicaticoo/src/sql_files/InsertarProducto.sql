@@ -1,3 +1,3 @@
-INSERT INTO producto(nombre,precio,costo,categoria)
+INSERT INTO producto(Nombre,Precio,Costo,Categoria)
 VALUES (?,?,?,?);
 

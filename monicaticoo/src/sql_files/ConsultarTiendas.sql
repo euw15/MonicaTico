@@ -1,2 +1,2 @@
 SELECT Nombre,Telefono,Direccion
-FROM tienda
+FROM tienda;
