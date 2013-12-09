@@ -1,2 +1,2 @@
-INSERT INTO sucursal(nombre,direccion,idTienda)
+INSERT INTO sucursal(Nombre,Direccion,idTienda)
 VALUES (?,?,?);
