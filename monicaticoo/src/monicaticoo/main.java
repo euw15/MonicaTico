@@ -6,6 +6,9 @@
 
 package monicaticoo;
 
+import db_managment.Direct_Control_BD;
+import db_managment.Setting_Up_BD;
+
 
 
 public class main {
@@ -15,7 +18,14 @@ public class main {
      */
     public static void main(String[] args) {
         
-        // TODO code application logic here
+        Direct_Control_BD AdministradorBD;
+        Setting_Up_BD setting= new Setting_Up_BD();
+     
+        //Pruebas de Edward 
+        AdministradorBD= new Direct_Control_BD(setting.getConection(),setting.getStatement());
+        AdministradorBD.consultarInventarioXSucursal(1);
+        AdministradorBD.consultarProducto(2);
+        //**********************
     }
     
 }

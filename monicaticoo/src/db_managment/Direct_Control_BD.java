@@ -81,7 +81,51 @@ public class Direct_Control_BD {
 
 
     }
+    
+    public void consultarInventarioXSucursal(int idSucursal)
+    {
+        try {
+            String valorInventario = this.readSql("../monicaticoo/src/sql_files/"
+                    + "consultarInventarioxSucursal.sql");
+            PreparedStatement stm = this.conection.prepareStatement(valorInventario);
+            stm.setInt(1, idSucursal);
+            ResultSet resultset = stm.executeQuery();
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getString(2) + "||" + resultset.getInt(3)
+                        + "||" + resultset.getInt(4));
+            }
 
+        } catch (Exception e) {
+            System.out.println("Error al obtener el valor del inventario");
+        }
+
+
+    }
+
+    public void consultarProducto(int idProducto)
+    {
+        try {
+            String valorInventario = this.readSql("../monicaticoo/src/sql_files/"
+                    + "consultarProducto.sql");
+            PreparedStatement stm = this.conection.prepareStatement(valorInventario);
+            stm.setInt(1, idProducto);
+            ResultSet resultset = stm.executeQuery();
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getInt(2) + "||" + resultset.getInt(3)
+                        + "||" + resultset.getString(4));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el valor del producto");
+        }
+
+
+    }
+    
     private String readSql(String file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = null;
