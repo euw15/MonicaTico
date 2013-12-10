@@ -118,15 +118,15 @@ public class Direct_Control_BD {
 
     }
 
-    public void consultarProducto(int idProducto) {//esta bien
+    public void consultarProducto(String idProducto) {//esta bien
         try {
             String valorInventario = this.readSql("../monicaticoo/src/"
                     + "sql_files/consultarProducto.sql");
             PreparedStatement stm = this.conection.prepareStatement
         (valorInventario);
-            stm.setInt(1, idProducto);
+            stm.setString(1, idProducto);
             ResultSet resultset = stm.executeQuery();
-            //Imprime el resultado obtenido del valor del inventario
+            
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getInt(2) + "||" + resultset.
@@ -135,7 +135,7 @@ public class Direct_Control_BD {
             }
 
         } catch (Exception e) {
-            System.out.println("Error al obtener el valor del producto");
+            System.out.println("Error al obtener el producto");
         }
 
     }
@@ -301,7 +301,7 @@ public class Direct_Control_BD {
 
     }
 
-    public void consultarSucursal() {//esta bien
+    public void consultarSucursales() {//esta bien
 
         try {
             String InfoSucursales = this.readSql("../monicaticoo/src/sql_files/"
