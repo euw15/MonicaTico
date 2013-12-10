@@ -85,6 +85,8 @@ public class Direct_Control_BD {
         String Descripcion=Producto[1];
         int Cantidad=Integer.parseInt(Producto[2]);
         int Precio=Integer.parseInt(Producto[3]);
+        this.insertarProducto(idProducto,Descripcion,Precio,0,null);
+        this.insertarInventarioProducto(1, idProducto, Cantidad);
         
         
     }
@@ -109,7 +111,7 @@ public class Direct_Control_BD {
 
     }
 
-    public void consultarProducto(int idProducto) {
+    public void consultarProducto(int idProducto) {//esta bien
         try {
             String valorInventario = this.readSql("../monicaticoo/src/sql_files/"
                     + "consultarProducto.sql");
@@ -143,36 +145,40 @@ public class Direct_Control_BD {
         return stringBuilder.toString();
     }
 
-    public void insertarInventario(String Descripcion, int idSucursa) {
+
+     public void insertarInventario(String Descripcion, int idSucursal) {
+        //esta bien
+
         try {
             String Inventario = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarInventario.sql");
             PreparedStatement stm = this.conection.prepareStatement(Inventario);
             stm.setString(1, Descripcion);
-            stm.setInt(2, idSucursa);
-            stm.executeQuery();
+            stm.setInt(2, idSucursal);
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al crear inventario");
         }
     }
 
-    private void insertarInventarioProducto(int idInventarioProducto, int idProducto, int Cantidad) {
+    public void insertarInventarioProducto(int idInventarioProducto, String idProducto, int Cantidad) {
         try {
             String InventarioProducto = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarInventarioProducto.sql");
             PreparedStatement stm = this.conection.prepareStatement(InventarioProducto);
             stm.setInt(1, idInventarioProducto);
-            stm.setInt(2, idProducto);
+            stm.setString(2, idProducto);
             stm.setInt(3, Cantidad);
-            stm.executeQuery();
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al crear inventarioProducto");
         }
     }
 
-    private void insertarMovimientos(String Fecha, String Detalle, String Tipo) {
+    public void insertarMovimientos(String Fecha, String Detalle, String Tipo)
+    {//esta bien
         try {
             String movimientos = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarMovimientos.sql");
@@ -180,79 +186,84 @@ public class Direct_Control_BD {
             stm.setString(1, Fecha);
             stm.setString(2, Detalle);
             stm.setString(3, Tipo);
-            stm.executeQuery();
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al insertar movimiento");
         }
     }
 
-    public void insertarProducto(String nombre, int precio, int costo, String categoria) {
+
+    public void insertarProducto(String idProducto, String nombre, int precio,
+            int costo, String categoria) {//esta bien
+
         try {
             String Producto = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarProducto.sql");
             PreparedStatement stm = this.conection.prepareStatement(Producto);
-            stm.setString(1, nombre);
-            stm.setInt(2, precio);
-            stm.setInt(2, costo);
-            stm.setString(3, categoria);
-            stm.executeQuery();
+            stm.setString(1, idProducto);
+            stm.setString(2, nombre);
+            stm.setInt(3, precio);
+            stm.setInt(4, costo);
+            stm.setString(5, categoria);
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al insertar producto");
         }
     }
 
-    private void insertarProductoCantidadMov(int idProducto, int cantidad, int idMovimientos) {
+    public void insertarProductoCantidadMov(int idProducto, int cantidad, int idMovimientos) {
         try {
             String ProductoCantidadMov = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarProductoCantidadMovimiento.sql");
             PreparedStatement stm = this.conection.prepareStatement(ProductoCantidadMov);
             stm.setInt(1, idProducto);
             stm.setInt(2, cantidad);
-            stm.setInt(2, idMovimientos);
+            stm.setInt(3, idMovimientos);
 
-            stm.executeQuery();
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al insertar ProductoCantidadMov");
         }
     }
 
-    private void insertarSucursal(String nombre, String direccion, int idTienda) {
+    public void insertarSucursal(String nombre, String direccion, int idTienda) {//esta bien
         try {
             String valorSucursal = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarSucursal.sql");
+
             PreparedStatement stm = this.conection.prepareStatement(valorSucursal);
             stm.setString(1, nombre);
             stm.setString(2, direccion);
-            stm.setInt(2, idTienda);
+            stm.setInt(3, idTienda);
 
-            stm.executeQuery();
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al insertar Sucursal");
         }
     }
 
-    private void insertarTienda(String nombre, String telefono, String direccion) {
+    public void insertarTienda(String nombre, String telefono, String direccion) {//esta bien
         try {
             String valorTienda = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarTienda.sql");
-            PreparedStatement stm = this.conection.prepareStatement(valorTienda);
+            PreparedStatement stm
+                    = this.conection.prepareStatement(valorTienda);
             stm.setString(1, nombre);
             stm.setString(2, telefono);
-            stm.setString(2, direccion);
+            stm.setString(3, direccion);
 
-            stm.executeQuery();
-            
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al insertar Tienda");
         }
     }
 
-    public void consultarTienda(int idTienda) {
+    public void consultarTienda(int idTienda) {//esta bien
 
         try {
 
@@ -273,7 +284,7 @@ public class Direct_Control_BD {
 
     }
 
-    public void consultarSucursal() {
+    public void consultarSucursal() {//esta bien
 
         try {
             String InfoSucursales = this.readSql("../monicaticoo/src/sql_files/"

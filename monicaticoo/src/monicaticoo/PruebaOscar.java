@@ -91,7 +91,7 @@ public class PruebaOscar extends javax.swing.JFrame {
                 this.jTextField_Direccion.getText()));
         int numFilas=inventario.length;
         for(int row =0 ; row < numFilas;row++){
-            //this.AdministradorBD.insertProducto(inventario[row]);
+            this.AdministradorBD.insertProducto(inventario[row]);
         }
     }//GEN-LAST:event_cargaArchivo_butActionPerformed
     /**
