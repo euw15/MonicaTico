@@ -17,7 +17,7 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        PruebaOscar pruebaOscar;
         Direct_Control_BD AdministradorBD;
         Setting_Up_BD setting= new Setting_Up_BD();
      
@@ -30,6 +30,9 @@ public class main {
         //AdministradorBD.insertarProducto(1,"carrito", 5000, 2500, "infantil");
         AdministradorBD.insertarInventario("primerInventario", 1);
         //**********************
+        pruebaOscar = new PruebaOscar(AdministradorBD);
+        
+       
     }
     
 }

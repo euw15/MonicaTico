@@ -75,6 +75,19 @@ public class Direct_Control_BD {
         }
 
     }
+    /**
+     * Recibe un arreglo con todos los atributos necesarios para ingresar
+     * un producto
+     * @param Producto 
+     */
+    public void insertProducto(String[] Producto){
+        String idProducto= Producto[0];
+        String Descripcion=Producto[1];
+        int Cantidad=Integer.parseInt(Producto[2]);
+        int Precio=Integer.parseInt(Producto[3]);
+        
+        
+    }
 
     public void consultarInventarioXSucursal(int idSucursal) {
         try {
@@ -130,7 +143,7 @@ public class Direct_Control_BD {
         return stringBuilder.toString();
     }
 
-    private void insertarInventario(String Descripcion, int idSucursa) {
+    public void insertarInventario(String Descripcion, int idSucursa) {
         try {
             String Inventario = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarInventario.sql");
@@ -174,7 +187,7 @@ public class Direct_Control_BD {
         }
     }
 
-    private void insertarProducto(String nombre, int precio, int costo, String categoria) {
+    public void insertarProducto(String nombre, int precio, int costo, String categoria) {
         try {
             String Producto = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarProducto.sql");
