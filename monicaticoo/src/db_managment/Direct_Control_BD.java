@@ -32,10 +32,11 @@ public class Direct_Control_BD {
 
     /**
      * Obtiene el valor del inventario segun el nombre del inventario
-     *
+     * La consulta devuelve los siguientes atributos: idProducto,Nombre,Precio,
+     * Cantidad,ValordeVenta
      * @param nombreInv
      */
-    public void valorInventario(String nombreInv) {
+    public void valorInventario(String nombreInv) {// esta bien
         try {
             String valorInventario = this.readSql("../monicaticoo/src/sql_files/"
                     + "ValorInventario.sql");
@@ -46,7 +47,7 @@ public class Direct_Control_BD {
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getString(2) + "||" + resultset.getInt(3)
-                        + "||" + resultset.getInt(4));
+                        + "||" + resultset.getInt(4)+ "||" + resultset.getInt(5));
             }
 
         } catch (Exception e) {
@@ -58,12 +59,13 @@ public class Direct_Control_BD {
     /**
      * Obtiene todos los productos que estan agotados sin importar al inventario
      * que pertenecen
+     * La consulta devuelve los siguientes atributos: idProducto,Nombre,Precio
      */
-    public void verProductosAgotados() {
+    public void verProductosAgotados() {//esta bien
         try {
-            String valorInventario = this.readSql("../monicaticoo/src/sql_files/"
+            String verProductosAgotados = this.readSql("../monicaticoo/src/sql_files/"
                     + "verProductosAgotados.sql");
-            ResultSet resultset = statement.executeQuery(valorInventario);
+            ResultSet resultset = statement.executeQuery(verProductosAgotados);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
@@ -77,16 +79,16 @@ public class Direct_Control_BD {
     }
     /**
      * Recibe un arreglo con todos los atributos necesarios para ingresar
-     * un producto
+     * un producto que pertenece a un inventario especifico
      * @param Producto 
      */
-    public void insertProducto(String[] Producto){
+    public void insertProducto(String[] Producto){//esta bien
         String idProducto= Producto[0];
         String Descripcion=Producto[1];
         int Cantidad=Integer.parseInt(Producto[2]);
         int Precio=Integer.parseInt(Producto[3]);
         this.insertarProducto(idProducto,Descripcion,Precio,0,null);
-        this.insertarInventarioProducto(1, idProducto, Cantidad);
+        this.insertarInventarioProducto(2, idProducto, Cantidad);
         
         
     }
@@ -209,6 +211,8 @@ public class Direct_Control_BD {
             stm.executeUpdate();
 
         } catch (Exception e) {
+            System.out.println(idProducto);
+            System.out.println(nombre);
             System.out.println("Error al insertar producto");
         }
     }
