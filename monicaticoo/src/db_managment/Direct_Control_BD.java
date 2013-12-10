@@ -94,21 +94,6 @@ public class Direct_Control_BD {
         
     }
 
-    /**
-     * Recibe un arreglo con todos los atributos necesarios para ingresar un
-     * producto
-     *
-     * @param Producto
-     */
-    public void insertProducto(String[] Producto) {
-        String idProducto = Producto[0];
-        String Descripcion = Producto[1];
-        int Cantidad = Integer.parseInt(Producto[2]);
-        int Precio = Integer.parseInt(Producto[3]);
-        this.insertarProducto(idProducto, Descripcion, Precio, 0, null);
-        this.insertarInventarioProducto(2, idProducto, Cantidad);
-
-    }
 
     public void consultarInventarioXSucursal(int idSucursal) {
         try {
