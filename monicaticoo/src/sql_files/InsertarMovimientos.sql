@@ -1,2 +1,2 @@
-INSERT INTO moviminetos(Fecha,Detalle,Tipo)
+INSERT INTO movimientos(Fecha,Detalle,Tipo)
 VALUES (?,?,?);

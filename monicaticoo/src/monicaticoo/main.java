@@ -23,8 +23,9 @@ public class main {
      
         //Pruebas de Edward 
         AdministradorBD= new Direct_Control_BD(setting.getConection(),setting.getStatement());
-        AdministradorBD.consultarInventarioXSucursal(1);
-        AdministradorBD.consultarProducto(2);
+        AdministradorBD.consultarTienda(1);
+       // AdministradorBD.consultarInventarioXSucursal(1);
+     //  AdministradorBD.consultarProducto(2);
         //**********************
     }
     
