@@ -28,8 +28,9 @@ public class main {
      //  AdministradorBD.consultarProducto(2);
        // AdministradorBD.insertarTienda("francini", "2256545", "nigeria") ;
         //AdministradorBD.insertarProducto(1,"carrito", 5000, 2500, "infantil");
-        AdministradorBD.insertarInventario("primerInventario", 1);
-        //**********************
+//        AdministradorBD.insertarInventario("primerInventario", 1);
+        //AdministradorBD.consultarProducto(1);
+        //AdministradorBD.insertarMovimientos("2014-02-03", "segundo", "ja");
     }
     
 }
