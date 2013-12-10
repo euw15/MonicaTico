@@ -31,6 +31,7 @@ public class main {
 //        AdministradorBD.insertarInventario("primerInventario", 1);
         //AdministradorBD.consultarProducto(1);
         //AdministradorBD.insertarMovimientos("2014-02-03", "segundo", "ja");
+       AdministradorBD.insertarInventarioProducto(1, 1, 10);
     }
     
 }
