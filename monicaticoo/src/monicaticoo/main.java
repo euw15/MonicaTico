@@ -29,13 +29,21 @@ public class main {
         //AdministradorBD.consultarProducto(2);
         // AdministradorBD.insertarTienda("francini", "2256545", "nigeria") ;
         //AdministradorBD.insertarProducto(1,"carrito", 5000, 2500, "infantil");
-        //AdministradorBD.insertarInventario("primerInventario", 3);
         //**********************
         // pruebaOscar = new PruebaOscar(AdministradorBD);
         //AdministradorBD.valorInventario("segundoInventario");
         // AdministradorBD.verProductosAgotados();
-        // AdministradorBD.verListaDePrecioXInventario("segundoInventario");
-        //AdministradorBD.verProductosPorCategoriaDeUnInv("General","segundoInventario");
+        //AdministradorBD.verListaDePrecioXInventario("segundoInventario");
+        // AdministradorBD.verProductosPorCategoriaDeUnInv("General",
+//        "primerInventario");
+        // AdministradorBD.eliminarInventario("segundoInventario");
+        //AdministradorBD.verProductosPorCategoriaDeUnInv("ninguna",
+//        "segundoInventario");
+        // AdministradorBD.verProductosSinCategoriaDeUnInv("segundoInventario");
+        //AdministradorBD.modificarProducto("1","camisa2", 88888888, 2);
+        // AdministradorBD.BuscarCategoriaPorDescripcion("General");
+//        AdministradorBD.CambiarDescripcionDelInventario(1, "toto");
+        AdministradorBD.CambiarSucursalDeUnInv(1,2);
     }
 
 }
