@@ -31,7 +31,7 @@ public class main {
         //AdministradorBD.insertarProducto(1,"carrito", 5000, 2500, "infantil");
         //AdministradorBD.insertarInventario("primerInventario", 3);
         //**********************
-        //pruebaOscar = new PruebaOscar(AdministradorBD);
+        pruebaOscar = new PruebaOscar(AdministradorBD);
         //AdministradorBD.valorInventario("segundoInventario");
         //AdministradorBD.verProductosAgotados();
 
