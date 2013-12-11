@@ -391,4 +391,25 @@ public class Direct_Control_BD {
             System.out.println("Error al eliminar inventario");
         }
     }
+     public void verProductosSinCategoriaDeUnInv(String descripcionDeUnInv) {
+        try {
+
+            String productosSinCategoria = this.readSql("../monicaticoo/"
+                    + "src/sql_files/ProductosSinCategoria.sql");
+            PreparedStatement stm = 
+                    this.conection.prepareStatement(productosSinCategoria);
+            stm.setString(1, descripcionDeUnInv);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getString(2) + "||" + rs.getInt(3));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener los Productos sin categoria");
+
+        }
+        
+        
+    }
+     
 }

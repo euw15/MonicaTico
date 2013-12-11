@@ -33,10 +33,13 @@ public class main {
         // pruebaOscar = new PruebaOscar(AdministradorBD);
         //AdministradorBD.valorInventario("segundoInventario");
         // AdministradorBD.verProductosAgotados();
-        AdministradorBD.verListaDePrecioXInventario("segundoInventario");
-        // AdministradorBD.verProductosPorCategoriaDeUnInv("General","primerInventario");
+        //AdministradorBD.verListaDePrecioXInventario("segundoInventario");
+        // AdministradorBD.verProductosPorCategoriaDeUnInv("General",
+//        "primerInventario");
         // AdministradorBD.eliminarInventario("segundoInventario");
-
+        //AdministradorBD.verProductosPorCategoriaDeUnInv("ninguna",
+//        "segundoInventario");
+        AdministradorBD.verProductosSinCategoriaDeUnInv("segundoInventario");
     }
 
 }
