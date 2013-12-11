@@ -35,7 +35,7 @@ public class main {
         //AdministradorBD.valorInventario("segundoInventario");
         // AdministradorBD.verProductosAgotados();
         // AdministradorBD.verListaDePrecioXInventario("segundoInventario");
-        AdministradorBD.verProductosPorCategoriaDeUnInv("General","segundoInventario");
+        //AdministradorBD.verProductosPorCategoriaDeUnInv("General","segundoInventario");
     }
 
 }
