@@ -12,6 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -89,29 +92,16 @@ public class Direct_Control_BD {
         String Descripcion=Producto[1];
         int Cantidad=Integer.parseInt(Producto[2]);
         int Precio=Integer.parseInt(Producto[3]);
+        /**DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String fecha=dateFormat.format(date);***/
         this.insertarProducto(idProducto,Descripcion,Precio,0,null);
         this.insertarInventarioProducto(2, idProducto, Cantidad);
         
         
     }
 
-    /**
-     * Recibe un arreglo con todos los atributos necesarios para ingresar un
-     * producto
-     *
-     * @param Producto
-     */
-    public void insertProducto(String[] Producto) {
-        String idProducto = Producto[0];
-        String Descripcion = Producto[1];
-        int Cantidad = Integer.parseInt(Producto[2]);
-        int Precio = Integer.parseInt(Producto[3]);
-        this.insertarProducto(idProducto, Descripcion, Precio, 0, null);
-        this.insertarInventarioProducto(2, idProducto, Cantidad);
-
-    }
-
-    public void consultarInventarioXSucursal(int idSucursal) {
+     public void consultarInventarioXSucursal(int idSucursal) {
         try {
             String valorInventario = this.readSql("../monicaticoo/src"
                     + "/sql_files/consultarInventarioxSucursal.sql");
