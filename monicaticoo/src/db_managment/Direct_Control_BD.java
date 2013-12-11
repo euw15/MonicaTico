@@ -87,18 +87,19 @@ public class Direct_Control_BD {
      * Recibe un arreglo con todos los atributos necesarios para ingresar un
      * producto que pertenece a un inventario especifico La fecha que esta por
      * default es la del dia
-     *
      * @param Producto
      */
-    public void insertProducto(String[] Producto, int idInventario) {//esta bien
+    public void insertProductoPorCategoria(String[] Producto, int idInventario,
+            int idCategoria) {//esta bien
         String idProducto = Producto[0];
         String Descripcion = Producto[1];
         int Cantidad = Integer.parseInt(Producto[2]);
         int Precio = Integer.parseInt(Producto[3]);
+        int Costo = Integer.parseInt(Producto[4]);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
-        this.insertarProducto(idProducto, Descripcion, Precio, 0, null, fecha);
+        this.insertarProductoPorCategoria(idProducto, Descripcion, Precio,Costo,idCategoria, fecha);
         this.insertarInventarioProducto(idInventario, idProducto, Cantidad);
 
     }
@@ -206,18 +207,18 @@ public class Direct_Control_BD {
         }
     }
 
-    public void insertarProducto(String idProducto, String nombre, int precio,
-            int costo, String categoria, String fecha) {//esta bien
+    public void insertarProductoPorCategoria(String idProducto, String nombre, int precio,
+            int costo, int categoria, String fecha) {//esta bien
 
         try {
             String Producto = this.readSql("../monicaticoo/src/sql_files/"
-                    + "InsertarProducto.sql");
+                    + "InsertarProductoPorCategoria.sql");
             PreparedStatement stm = this.conection.prepareStatement(Producto);
             stm.setString(1, idProducto);
             stm.setString(2, nombre);
             stm.setInt(3, precio);
             stm.setInt(4, costo);
-            stm.setString(5, categoria);
+            stm.setInt(5, categoria);
             stm.setString(6, fecha);
             stm.executeUpdate();
 
@@ -339,7 +340,7 @@ public class Direct_Control_BD {
         try {
 
             String listaDePrecios = this.readSql("../monicaticoo/src/sql_files/"
-                    + "ListaDePrecios.sql");
+                    + "ListaDePreciosXInventario.sql");
 
             PreparedStatement stm = this.conection.prepareStatement(listaDePrecios);
             stm.setString(1, descripcionInventario);
@@ -375,5 +376,19 @@ public class Direct_Control_BD {
 
         }
         
+        
+    }
+     public void eliminarInventario(String nombre) {//esta bien
+        try {
+            String eliminarInv = this.readSql("../monicaticoo/src/sql_files/"
+                    + "EliminarInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(eliminarInv);
+            stm.setString(1, nombre);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al eliminar inventario");
+        }
     }
 }
