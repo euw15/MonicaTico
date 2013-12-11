@@ -35,15 +35,15 @@ public class main {
         // AdministradorBD.verProductosAgotados();
         //AdministradorBD.verListaDePrecioXInventario("segundoInventario");
         // AdministradorBD.verProductosPorCategoriaDeUnInv("General",
-//        "primerInventario");
+        //"primerInventario");
         // AdministradorBD.eliminarInventario("segundoInventario");
         //AdministradorBD.verProductosPorCategoriaDeUnInv("ninguna",
-//        "segundoInventario");
+        //"segundoInventario");
         // AdministradorBD.verProductosSinCategoriaDeUnInv("segundoInventario");
         //AdministradorBD.modificarProducto("1","camisa2", 88888888, 2);
         // AdministradorBD.BuscarCategoriaPorDescripcion("General");
-//        AdministradorBD.CambiarDescripcionDelInventario(1, "toto");
-        AdministradorBD.CambiarSucursalDeUnInv(1,2);
+        //AdministradorBD.CambiarDescripcionDelInventario(1, "toto");
+        // AdministradorBD.CambiarSucursalDeUnInv(1,2);
     }
 
 }
