@@ -39,9 +39,11 @@ public class main {
         // AdministradorBD.eliminarInventario("segundoInventario");
         //AdministradorBD.verProductosPorCategoriaDeUnInv("ninguna",
 //        "segundoInventario");
-       // AdministradorBD.verProductosSinCategoriaDeUnInv("segundoInventario");
+        // AdministradorBD.verProductosSinCategoriaDeUnInv("segundoInventario");
         //AdministradorBD.modificarProducto("1","camisa2", 88888888, 2);
-       // AdministradorBD.BuscarCategoriaPorDescripcion("General");
-    }                                                   
+        // AdministradorBD.BuscarCategoriaPorDescripcion("General");
+//        AdministradorBD.CambiarDescripcionDelInventario(1, "toto");
+        AdministradorBD.CambiarSucursalDeUnInv(1,2);
+    }
 
 }

@@ -413,7 +413,7 @@ public class Direct_Control_BD {
 
     }
 
-    public void modificarProducto(String idProducto, String nombre, 
+    public void modificarProducto(String idProducto, String nombre,
             int precio, int idCategoria) {//esta bien
         try {
             String ModificarProducto = this.readSql("../monicaticoo"
@@ -424,7 +424,7 @@ public class Direct_Control_BD {
             stm.setInt(2, precio);
             stm.setInt(3, idCategoria);
             stm.setString(4, idProducto);
-            
+
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -438,16 +438,49 @@ public class Direct_Control_BD {
             String BuscarCategoriaPorDescripcion = this.readSql("../monic"
                     + "aticoo/src/sql_files/BuscarCategoriaPorDescripcion.sql");
             PreparedStatement stm
-                    = this.conection.prepareStatement
-        (BuscarCategoriaPorDescripcion);
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setString(1, descripcionDeCategoria);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                System.out.println( rs.getInt(1));
+                System.out.println(rs.getInt(1));
             }
         } catch (Exception e) {
             System.out.println("Error al obtener Categoria Por Descripcion");
 
+        }
+
+    }
+
+    public void CambiarDescripcionDelInventario(int idInventario, String nombre) {//esta bien
+        try {
+            String cambiarDescripcionDelInventario = this.readSql("../"
+                    + "monicaticoo/src/sql_files/CambiarDescripcion"
+                    + "DelInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(cambiarDescripcionDelInventario);
+            stm.setString(1, nombre);
+            stm.setInt(2, idInventario);
+
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al cambiar Descripcion Del Inventario");
+        }
+    }
+
+    public void CambiarSucursalDeUnInv(int idInventario, int idSucursal) 
+    {//esta bien
+        try {
+            String cambiarSucursalDeUnInv = this.readSql("../monicaticoo"
+                    + "/src/sql_files/CambiarSucursalDeUnInv.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(cambiarSucursalDeUnInv);
+            stm.setInt(1, idSucursal);
+            stm.setInt(2, idInventario);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Cambiar Sucursal De Un Inv");
         }
 
     }
