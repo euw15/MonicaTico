@@ -34,24 +34,24 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene el valor del inventario segun el nombre del inventario
-     * La consulta devuelve los siguientes atributos: idProducto,Nombre,Precio,
+     * Obtiene el valor del inventario segun el nombre del inventario La
+     * consulta devuelve los siguientes atributos: idProducto,Nombre,Precio,
      * Cantidad,ValordeVenta
+     *
      * @param nombreInv
      */
     public void valorInventario(String nombreInv) {// esta bien
         try {
             String valorInventario = this.readSql("../monicaticoo/"
                     + "src/sql_files/ValorInventario.sql");
-            PreparedStatement stm = this.conection.prepareStatement
-        (valorInventario);
+            PreparedStatement stm = this.conection.prepareStatement(valorInventario);
             stm.setString(1, nombreInv);
             ResultSet resultset = stm.executeQuery();
             //Imprime el resultado obtenido del valor del inventario
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getString(2) + "||" + resultset.getInt(3)
-                        + "||" + resultset.getInt(4)+ "||" + resultset.getInt(5));
+                        + "||" + resultset.getInt(4) + "||" + resultset.getInt(5));
             }
 
         } catch (Exception e) {
@@ -62,8 +62,8 @@ public class Direct_Control_BD {
 
     /**
      * Obtiene todos los productos que estan agotados sin importar al inventario
-     * que pertenecen
-     * La consulta devuelve los siguientes atributos: idProducto,Nombre,Precio
+     * que pertenecen La consulta devuelve los siguientes atributos:
+     * idProducto,Nombre,Precio
      */
     public void verProductosAgotados() {//esta bien
         try {
@@ -73,8 +73,8 @@ public class Direct_Control_BD {
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
-                        + "||" + resultset.getString(2) + "||" +
-                        resultset.getInt(3));
+                        + "||" + resultset.getString(2) + "||"
+                        + resultset.getInt(3));
             }
 
         } catch (Exception e) {
@@ -82,39 +82,39 @@ public class Direct_Control_BD {
         }
 
     }
+
     /**
-     * Recibe un arreglo con todos los atributos necesarios para ingresar
-     * un producto que pertenece a un inventario especifico
-     * La fecha que esta por default es la del dia
-     * @param Producto 
+     * Recibe un arreglo con todos los atributos necesarios para ingresar un
+     * producto que pertenece a un inventario especifico La fecha que esta por
+     * default es la del dia
+     *
+     * @param Producto
      */
-    public void insertProducto(String[] Producto,int idInventario){//esta bien
-        String idProducto= Producto[0];
-        String Descripcion=Producto[1];
-        int Cantidad=Integer.parseInt(Producto[2]);
-        int Precio=Integer.parseInt(Producto[3]);
+    public void insertProducto(String[] Producto, int idInventario) {//esta bien
+        String idProducto = Producto[0];
+        String Descripcion = Producto[1];
+        int Cantidad = Integer.parseInt(Producto[2]);
+        int Precio = Integer.parseInt(Producto[3]);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
-        String fecha=dateFormat.format(date);
-        this.insertarProducto(idProducto,Descripcion,Precio,0,null,fecha);
+        String fecha = dateFormat.format(date);
+        this.insertarProducto(idProducto, Descripcion, Precio, 0, null, fecha);
         this.insertarInventarioProducto(idInventario, idProducto, Cantidad);
-        
-        
+
     }
 
-     public void consultarInventarioXSucursal(int idSucursal) {
+    public void consultarInventarioXSucursal(int idSucursal) {
         try {
             String valorInventario = this.readSql("../monicaticoo/src"
                     + "/sql_files/consultarInventarioxSucursal.sql");
-            PreparedStatement stm = this.conection.prepareStatement
-        (valorInventario);
+            PreparedStatement stm = this.conection.prepareStatement(valorInventario);
             stm.setInt(1, idSucursal);
             ResultSet resultset = stm.executeQuery();
             //Imprime el resultado obtenido del valor del inventario
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getString(2) + "||" + resultset.
-                                getInt(3)
+                        getInt(3)
                         + "||" + resultset.getInt(4));
             }
 
@@ -128,15 +128,14 @@ public class Direct_Control_BD {
         try {
             String valorInventario = this.readSql("../monicaticoo/src/"
                     + "sql_files/consultarProducto.sql");
-            PreparedStatement stm = this.conection.prepareStatement
-        (valorInventario);
+            PreparedStatement stm = this.conection.prepareStatement(valorInventario);
             stm.setString(1, idProducto);
             ResultSet resultset = stm.executeQuery();
-            
+
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getInt(2) + "||" + resultset.
-                                getInt(3)
+                        getInt(3)
                         + "||" + resultset.getString(4));
             }
 
@@ -160,8 +159,7 @@ public class Direct_Control_BD {
         return stringBuilder.toString();
     }
 
-
-     public void insertarInventario(String Descripcion, int idSucursal) {
+    public void insertarInventario(String Descripcion, int idSucursal) {
         //esta bien
 
         try {
@@ -177,13 +175,12 @@ public class Direct_Control_BD {
         }
     }
 
-    public void insertarInventarioProducto(int idInventarioProducto, 
+    public void insertarInventarioProducto(int idInventarioProducto,
             String idProducto, int Cantidad) {//esta bien
         try {
             String InventarioProducto = this.readSql("../monicaticoo/src/"
                     + "sql_files/InsertarInventarioProducto.sql");
-            PreparedStatement stm = this.conection.prepareStatement
-        (InventarioProducto);
+            PreparedStatement stm = this.conection.prepareStatement(InventarioProducto);
             stm.setInt(1, idInventarioProducto);
             stm.setString(2, idProducto);
             stm.setInt(3, Cantidad);
@@ -194,8 +191,7 @@ public class Direct_Control_BD {
         }
     }
 
-    public void insertarMovimientos(String Fecha, String Detalle, String Tipo) 
-    {//esta bien
+    public void insertarMovimientos(String Fecha, String Detalle, String Tipo) {//esta bien
         try {
             String movimientos = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarMovimientos.sql");
@@ -211,7 +207,7 @@ public class Direct_Control_BD {
     }
 
     public void insertarProducto(String idProducto, String nombre, int precio,
-            int costo, String categoria,String fecha) {//esta bien
+            int costo, String categoria, String fecha) {//esta bien
 
         try {
             String Producto = this.readSql("../monicaticoo/src/sql_files/"
@@ -237,8 +233,7 @@ public class Direct_Control_BD {
         try {
             String ProductoCantidadMov = this.readSql("../monicaticoo/src/sql"
                     + "_files/InsertarProductoCantidadMovimiento.sql");
-            PreparedStatement stm = this.conection.prepareStatement
-        (ProductoCantidadMov);
+            PreparedStatement stm = this.conection.prepareStatement(ProductoCantidadMov);
             stm.setString(1, idProducto);
             stm.setInt(2, cantidad);
             stm.setInt(3, idMovimientos);
@@ -250,14 +245,12 @@ public class Direct_Control_BD {
         }
     }
 
-    public void insertarSucursal(String nombre, String direccion, int idTienda)
-    {//esta bien
+    public void insertarSucursal(String nombre, String direccion, int idTienda) {//esta bien
         try {
             String valorSucursal = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarSucursal.sql");
 
-            PreparedStatement stm = this.conection.prepareStatement
-        (valorSucursal);
+            PreparedStatement stm = this.conection.prepareStatement(valorSucursal);
             stm.setString(1, nombre);
             stm.setString(2, direccion);
             stm.setInt(3, idTienda);
@@ -269,8 +262,7 @@ public class Direct_Control_BD {
         }
     }
 
-    public void insertarTienda(String nombre, String telefono, String direccion)
-    {//esta bien
+    public void insertarTienda(String nombre, String telefono, String direccion) {//esta bien
         try {
             String valorTienda = this.readSql("../monicaticoo/src/sql_files/"
                     + "InsertarTienda.sql");
@@ -341,5 +333,47 @@ public class Direct_Control_BD {
                     + "cantidadDeProducto");
 
         }
+    }
+
+    public void verListaDePrecioXInventario(String descripcionInventario) {//esta bien
+        try {
+
+            String listaDePrecios = this.readSql("../monicaticoo/src/sql_files/"
+                    + "ListaDePrecios.sql");
+
+            PreparedStatement stm = this.conection.prepareStatement(listaDePrecios);
+            stm.setString(1, descripcionInventario);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getString(2) + "||" + rs.getInt(3) + rs.getInt(4) + "||" + rs.getString(5));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener la lista de precios");
+
+        }
+
+    }
+
+    public void verProductosPorCategoriaDeUnInv(String categoria,
+            String descripcionDeUnInv) {//esta bien
+        try {
+
+            String productosPorCategoria = this.readSql("../monicaticoo/"
+                    + "src/sql_files/ProductosPorCategoriaDeUnInventario.sql");
+            PreparedStatement stm = 
+                    this.conection.prepareStatement(productosPorCategoria);
+            stm.setString(1, categoria);
+            stm.setString(2, descripcionDeUnInv);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getString(2) + "||" + rs.getInt(3));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener los Productos por categoria");
+
+        }
+        
     }
 }
