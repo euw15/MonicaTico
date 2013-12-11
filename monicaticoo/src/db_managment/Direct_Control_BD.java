@@ -89,7 +89,7 @@ public class Direct_Control_BD {
         String Descripcion=Producto[1];
         int Cantidad=Integer.parseInt(Producto[2]);
         int Precio=Integer.parseInt(Producto[3]);
-        this.insertarProducto(idProducto,Descripcion,Precio,0,null);
+//        this.insertarProducto(idProducto,Descripcion,Precio,0,null);
         this.insertarInventarioProducto(2, idProducto, Cantidad);
         
         
@@ -205,7 +205,7 @@ public class Direct_Control_BD {
     }
 
     public void insertarProducto(String idProducto, String nombre, int precio,
-            int costo, String categoria) {//esta bien
+            int costo, String categoria,String fecha) {//esta bien
 
         try {
             String Producto = this.readSql("../monicaticoo/src/sql_files/"
@@ -216,6 +216,7 @@ public class Direct_Control_BD {
             stm.setInt(3, precio);
             stm.setInt(4, costo);
             stm.setString(5, categoria);
+            stm.setString(6, fecha);
             stm.executeUpdate();
 
         } catch (Exception e) {
