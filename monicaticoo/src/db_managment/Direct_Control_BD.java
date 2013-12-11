@@ -67,7 +67,8 @@ public class Direct_Control_BD {
      */
     public void verProductosAgotados() {//esta bien
         try {
-            String verProductosAgotados = this.readSql("../monicaticoo/src/sql_files/"
+            String verProductosAgotados = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
                     + "verProductosAgotados.sql");
             ResultSet resultset = statement.executeQuery(verProductosAgotados);
             //Imprime el resultado obtenido de ver productos agotados
@@ -100,7 +101,8 @@ public class Direct_Control_BD {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
-        this.insertarProductoPorCategoria(idProducto, Descripcion, Precio, Costo, idCategoria, fecha);
+        this.insertarProductoPorCategoria(idProducto, Descripcion, Precio, 
+                Costo, idCategoria, fecha);
         this.insertarInventarioProducto(idInventario, idProducto, Cantidad);
 
     }
