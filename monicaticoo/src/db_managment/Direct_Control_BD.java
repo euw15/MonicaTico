@@ -88,7 +88,7 @@ public class Direct_Control_BD {
      * La fecha que esta por default es la del dia
      * @param Producto 
      */
-    public void insertProducto(String[] Producto){//esta bien
+    public void insertProducto(String[] Producto,int idInventario){//esta bien
         String idProducto= Producto[0];
         String Descripcion=Producto[1];
         int Cantidad=Integer.parseInt(Producto[2]);
@@ -97,7 +97,7 @@ public class Direct_Control_BD {
         Date date = new Date();
         String fecha=dateFormat.format(date);
         this.insertarProducto(idProducto,Descripcion,Precio,0,null,fecha);
-        this.insertarInventarioProducto(2, idProducto, Cantidad);
+        this.insertarInventarioProducto(idInventario, idProducto, Cantidad);
         
         
     }
