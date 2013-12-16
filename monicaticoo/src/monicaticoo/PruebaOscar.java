@@ -13,13 +13,15 @@ import javax.swing.JFileChooser;
  * @author Oscar Montes
  */
 public class PruebaOscar extends javax.swing.JFrame {
+
     Direct_Control_BD AdministradorBD;
+
     /**
      * Creates new form PruebaOscar
      */
     public PruebaOscar(Direct_Control_BD AdministradorBD) {
         //Obtiene el administrador de la base de datos
-        this.AdministradorBD=AdministradorBD;
+        this.AdministradorBD = AdministradorBD;
         initComponents();
         this.setVisible(true);
     }
@@ -83,32 +85,37 @@ public class PruebaOscar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Carga el archivo de excel seleccionado.
-     * @param evt 
+     *
+     * @param evt
      */
     private void cargaArchivo_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaArchivo_butActionPerformed
         ReadExcel excel = new ReadExcel();
-        String[][] inventario=excel.leerArchivoExcel(new File(
+        String[][] inventario = excel.leerArchivoExcel(new File(
                 this.jTextField_Direccion.getText()));
-        int numFilas=inventario.length;
-        for(int row =0 ; row < numFilas;row++){
-            //Inserta un producto en el inventario con id=2 con idcategoria=1
-            this.AdministradorBD.insertProductoPorCategoria(inventario[row],2,1);
+        int numFilas = inventario.length;
+        for (int row = 0; row < numFilas; row++) {
+//            //Inserta un producto en el inventario con id=2 con idcategoria=1
+//            this.AdministradorBD.insertProductoPorCategoria(inventario[row],2,1);
+
+            //Inserta un producto en el inventario con idUbicacionProducto=1(General) y idcategoria=1
+            this.AdministradorBD.insertProductoPorCategoria(inventario[row], 1, 1);
         }
     }//GEN-LAST:event_cargaArchivo_butActionPerformed
     /**
      * Ejecuta un buscador para encontrar el archivo de excel.
-     * @param evt 
+     *
+     * @param evt
      */
     private void buscaArchivo_butActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaArchivo_butActionPerformed
-        JFileChooser filechooser= new JFileChooser();
+        JFileChooser filechooser = new JFileChooser();
         int value = filechooser.showOpenDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
-                File file = filechooser.getSelectedFile();
-                this.jTextField_Direccion.setText(String.valueOf(file));
+            File file = filechooser.getSelectedFile();
+            this.jTextField_Direccion.setText(String.valueOf(file));
         }
     }//GEN-LAST:event_buscaArchivo_butActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscaArchivo_but;
     private javax.swing.JButton cargaArchivo_but;

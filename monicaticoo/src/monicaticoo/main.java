@@ -7,6 +7,9 @@ package monicaticoo;
 
 import db_managment.Direct_Control_BD;
 import db_managment.Setting_Up_BD;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class main {
 
@@ -30,7 +33,7 @@ public class main {
         // AdministradorBD.insertarTienda("francini", "2256545", "nigeria") ;
         //AdministradorBD.insertarProducto(1,"carrito", 5000, 2500, "infantil");
         //**********************
-        // pruebaOscar = new PruebaOscar(AdministradorBD);
+        pruebaOscar = new PruebaOscar(AdministradorBD);
         //AdministradorBD.valorInventario("segundoInventario");
         // AdministradorBD.verProductosAgotados();
         //AdministradorBD.verListaDePrecioXInventario("segundoInventario");
@@ -44,6 +47,11 @@ public class main {
         // AdministradorBD.BuscarCategoriaPorDescripcion("General");
         //AdministradorBD.CambiarDescripcionDelInventario(1, "toto");
         // AdministradorBD.CambiarSucursalDeUnInv(1,2);
+
+        // AdministradorBD.insertarEnVersion("Camisax", 35400, 1000,"2013-02-02","Activo","",1);
+//        AdministradorBD.insertaridProducto("prueba", 1);
+//        AdministradorBD.ventasPorVendedor(5);
+        //AdministradorBD.crearProducto("xcd", "primer", 10000, 2500,"2013-02-03" ,"fada", "sd",1);
     }
 
 }

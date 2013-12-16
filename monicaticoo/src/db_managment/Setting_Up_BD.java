@@ -21,7 +21,7 @@ public final class Setting_Up_BD {
      * Parametros de conexion
      */
     private String driver= "com.mysql.jdbc.Driver";
-    private String database= ("jdbc:mysql://localhost:3306/monicatico");
+    private String database= ("jdbc:mysql://localhost:3306/MonicaTico");
     private String user = "root";
     private String pass = "123456";
     private Connection conection;
