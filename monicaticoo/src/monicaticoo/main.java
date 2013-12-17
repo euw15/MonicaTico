@@ -33,9 +33,8 @@ public class main {
         // AdministradorBD.insertarTienda("francini", "2256545", "nigeria") ;
         //AdministradorBD.insertarProducto(1,"carrito", 5000, 2500, "infantil");
         //**********************
-        pruebaOscar = new PruebaOscar(AdministradorBD);
-        //AdministradorBD.valorInventario("segundoInventario");
-        // AdministradorBD.verProductosAgotados();
+        //pruebaOscar = new PruebaOscar(AdministradorBD);
+       // AdministradorBD.verProductosAgotados();
         //AdministradorBD.verListaDePrecioXInventario("segundoInventario");
         // AdministradorBD.verProductosPorCategoriaDeUnInv("General",
         //"primerInventario");
@@ -52,6 +51,12 @@ public class main {
 //        AdministradorBD.insertaridProducto("prueba", 1);
 //        AdministradorBD.ventasPorVendedor(5);
         //AdministradorBD.crearProducto("xcd", "primer", 10000, 2500,"2013-02-03" ,"fada", "sd",1);
+        //AdministradorBD.verListaDePrecioDelInventario(1);
+        //AdministradorBD.verProductosSinCategoriaDeUnInv("Bodega");
+        //AdministradorBD.verMovProductosOrdenadosPorTipo("General", "2013-02-01", "2013-02-09");
+        //AdministradorBD.verMovProductoOrdenadoPorTipo("HD2001","General", "2013-02-01", "2013-02-09");
+         //AdministradorBD.valorInventario("General");
+        //AdministradorBD.verProductosAgotados("General");
     }
 
 }
