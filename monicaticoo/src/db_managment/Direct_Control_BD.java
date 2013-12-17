@@ -85,6 +85,244 @@ public class Direct_Control_BD {
         }
 
     }
+    
+    /**
+     * @param idCLiente
+     * Este metodo da como resultados todas las ventas hechas
+     * a un determinado cliente
+     * 
+     * El resultado es el sig:
+     * Fecha, Descripcion , Monto
+     */
+      public void consultarVentasXCliente(int idCliente) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "consultarVentasXCliente.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setInt(1, idCliente);
+            stm.setInt(2, idCliente);
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getString(2) + "||"
+                        + resultset.getInt(3));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener las ventas de un cliente");
+        }
+
+    }
+      
+      /**
+     * @param idVendedor
+     * Este metodo da como resultados todas las ventas hechas
+     * a por determinado vendedor
+     * 
+     * El resultado es el sig:
+     * Fecha, Descripcion , Monto
+     */
+      
+      public void consultarVentasXVendedor(int idVendedor) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "consultarVentasXVendedor.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setInt(1, idVendedor);
+            stm.setInt(2, idVendedor);
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getString(2) + "||"
+                        + resultset.getInt(3));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener las ventas de un vendedor");
+        }
+
+    }
+      /**
+       * 
+       * @param idProducto
+       * 
+       * Consulta todas las ventas que se le han hecho a un producto
+       * 
+       */
+      
+      
+      public void consultarVentasXProducto(int idProducto) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "consultarVentasXProducto.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setInt(1, idProducto);
+            
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getInt(2) + "||"
+                        + resultset.getInt(3)+"||"+ resultset.getInt(4));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener las ventas de un producto");
+        }
+
+    }
+      
+      /**
+       * 
+       * @param idCliente 
+       */
+      
+      public void consultarPagosCliente(int idCliente) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "consultarPagosCliente.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setInt(1, idCliente);
+            
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getString(2) + "||"
+                        + resultset.getInt(3));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener los pagos de un cliente");
+        }
+
+    }
+      
+      /**
+       * Da todas las ventas de un tipo de pago
+       * @param TipoDePago 
+       * Devuelve
+       * Fecha,Factura,Cantidad,Precio
+       */
+      public void consultarVentasXTipoPago(String TipoDePago) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "consultarVentasXTipoPago.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setString(1, TipoDePago);
+            
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getInt(2) + "||"
+                        + resultset.getInt(3)+"||"+ resultset.getInt(4));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener lod pagos de un cliente");
+        }
+
+    }
+      
+      /**
+       * 
+       * @param idVendedor
+       * 
+       * 
+       */
+      public void consultarVentasXVendedorYCliente(int idVendedor) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "consultarVentasXVendedorYCliente.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setInt(1, idVendedor);
+            
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getString(2) + "||"
+                        + resultset.getInt(3)+"||"+ resultset.getString(4)+
+                "||"+ resultset.getString(5));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener las ventas a un cliente");
+        }
+
+    }
+      
+      /**
+       * 
+       * @param idProducto 
+       */
+       public void consultarMovimientosProductos(int idProducto) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "consultarMovimientosProductos.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setInt(1, idProducto);
+            
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getString(2) + "||"
+                        + resultset.getString(3)+"||"+ resultset.getString(4)+
+                "||"+ resultset.getInt(5)+
+                "||"+ resultset.getInt(6)+
+                "||"+ resultset.getString(7));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener las ventas a un cliente");
+        }
+
+    }
+       
+       public void cierreDeVentasXFecha(String FechaInicio,String FechaFinal) {
+        try {
+            String dato = this.readSql("../monicaticoo/src/"
+                    + "sql_files/"
+                    + "CierreDeVentasXFecha.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
+            stm.setString(1, FechaInicio);
+            stm.setString(2, FechaFinal);
+            stm.setString(3, FechaInicio);
+            stm.setString(4, FechaFinal);
+            
+            ResultSet resultset = stm.executeQuery(dato);
+            //Imprime el resultado obtenido de ver productos agotados
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getString(2) + "||"
+                        + resultset.getInt(3));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener las ventas a un cliente");
+        }
+
+    }
+      
+    
 
     /**
      * Recibe un arreglo con todos los atributos necesarios para ingresar un

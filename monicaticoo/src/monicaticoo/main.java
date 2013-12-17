@@ -17,13 +17,16 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PruebaOscar pruebaOscar;
+        
         Direct_Control_BD AdministradorBD;
         Setting_Up_BD setting = new Setting_Up_BD();
 
         //Pruebas de Edward 
         AdministradorBD = new Direct_Control_BD(setting.getConection(),
                 setting.getStatement());
+        AdministradorBD.consultarProducto("1020");
+        AdministradorBD.consultarVentasXCliente(1);
+        
         //AdministradorBD.insertarTienda("francini", "2256545", "nigeria") ;
         //AdministradorBD.insertarSucursal("lucia", "cuatrofilosdecuchillomocho",
         //      1);
@@ -33,7 +36,7 @@ public class main {
         // AdministradorBD.insertarTienda("francini", "2256545", "nigeria") ;
         //AdministradorBD.insertarProducto(1,"carrito", 5000, 2500, "infantil");
         //**********************
-        pruebaOscar = new PruebaOscar(AdministradorBD);
+       // pruebaOscar = new PruebaOscar(AdministradorBD);
         //AdministradorBD.valorInventario("segundoInventario");
         // AdministradorBD.verProductosAgotados();
         //AdministradorBD.verListaDePrecioXInventario("segundoInventario");
@@ -52,6 +55,8 @@ public class main {
 //        AdministradorBD.insertaridProducto("prueba", 1);
 //        AdministradorBD.ventasPorVendedor(5);
         //AdministradorBD.crearProducto("xcd", "primer", 10000, 2500,"2013-02-03" ,"fada", "sd",1);
+        
+        
     }
 
 }
