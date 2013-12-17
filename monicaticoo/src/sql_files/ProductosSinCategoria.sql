@@ -1,4 +1,4 @@
 SELECT P.idProducto,P.Nombre,P.Precio
-FROM producto AS P, inventarioproducto AS Inv, inventario AS I
-WHERE I.Descripcion = ? AND P.idProducto = Inv.idProducto
-AND Inv.idInventarioProducto= I.idInventario AND P.idCategoria IS NULL ;
+FROM producto AS P,inventario AS I,ubicacionproducto AS U
+WHERE U.Lugar=? AND I.idUbicacionProducto=U.idUbicacionProducto AND P.idProducto =I.idProducto
+AND P.idCategoriaProd IS NULL AND P.Estado='A';
