@@ -1,0 +1,2 @@
+INSERT INTO monicatico.cierredecaja (HoraInicio, HoraCierre, TotalVendido, Cajero, NombreCaja, Observaciones, ReporteInicio, ReporteFinal, TotalContado, TotalTarjeta) 
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
