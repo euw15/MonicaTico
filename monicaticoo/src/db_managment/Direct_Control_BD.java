@@ -40,12 +40,12 @@ public class Direct_Control_BD {
      *
      * @param nombreInv
      */
-    public void valorInventario(String nombreInv) {// esta bien
+    public void valorInventario(String UbicacionInv) {// esta bien
         try {
             String valorInventario = this.readSql("../monicaticoo/"
                     + "src/sql_files/ValorInventario.sql");
             PreparedStatement stm = this.conection.prepareStatement(valorInventario);
-            stm.setString(1, nombreInv);
+            stm.setString(1, UbicacionInv);
             ResultSet resultset = stm.executeQuery();
             //Imprime el resultado obtenido del valor del inventario
             while (resultset.next()) {
@@ -63,16 +63,17 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene todos los productos que estan agotados sin importar al inventario
-     * que pertenecen La consulta devuelve los siguientes atributos:
-     * idProducto,Nombre,Precio
+     * Obtiene todos los productos que estan agotados en el lugar del
+     * inventario elegido
      */
-    public void verProductosAgotados() {//esta bien
+    public void verProductosAgotados(String UbicacionInv) {//esta bien
         try {
             String verProductosAgotados = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "verProductosAgotados.sql");
-            ResultSet resultset = statement.executeQuery(verProductosAgotados);
+            PreparedStatement stm = this.conection.prepareStatement(verProductosAgotados);
+            stm.setString(1, UbicacionInv);
+            ResultSet resultset = stm.executeQuery();
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
