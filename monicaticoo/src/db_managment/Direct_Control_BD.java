@@ -105,7 +105,7 @@ public class Direct_Control_BD {
         String fecha = dateFormat.format(date);
 
         //crear el producto
-        crearProducto(idProducto, nombre, Precio, Costo, fecha, "Act",
+        crearProducto(idProducto, nombre, Precio, Costo, fecha, "A",
                 "AlgunaDescripcion", idCategoria);
         //insertar los productos creados al inventario
         insertarEnInventario(idProducto, idUbicacionProducto, Cantidad);
@@ -168,6 +168,138 @@ public class Direct_Control_BD {
         }
     }
 
+    /**
+     * Muestra las Facturas pendientes(tanto credito como apartados)
+     * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
+     * ||Tipopago
+     */
+    public void verFacturasPendientes() {//Bueno+
+        try {
+            String VerFacturasPendientes = readSql("../monicaticoo/src/"
+                    + "sql_files/VerFacturasPendientes.sql");
+            ResultSet rs = statement.executeQuery(VerFacturasPendientes);
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getInt(2) + "||" + rs.getString(3) + "||"
+                        + rs.getInt(4) + "||" + rs.getString(5) + "||"
+                        + rs.getString(6));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al ver facturas pendientes");
+        }
+    }
+
+    /**
+     * Muestra todos los apartados(Cerrados y Abiertos)
+     * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
+     * ||Tipopago
+     */
+    public void verApartados() {//Bueno+
+        try {
+            String VerApartados = readSql("../monicaticoo/src/"
+                    + "sql_files/VerApartados.sql");
+            ResultSet rs = statement.executeQuery(VerApartados);
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getInt(2) + "||" + rs.getString(3) + "||"
+                        + rs.getInt(4) + "||" + rs.getString(5) + "||"
+                        + rs.getString(6));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al ver apartados");
+        }
+    }
+
+    /**
+     * Muestra los apartados pendientes
+     * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
+     * ||Tipopago
+     */
+    public void verApartadosPendientes() {//Bueno+
+        try {
+            String VerApartadosPen = readSql("../monicaticoo/src/"
+                    + "sql_files/VerApartadosPendientes.sql");
+            ResultSet rs = statement.executeQuery(VerApartadosPen);
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getInt(2) + "||" + rs.getString(3) + "||"
+                        + rs.getInt(4) + "||" + rs.getString(5) + "||"
+                        + rs.getString(6));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al ver apartados pendientes");
+        }
+    }
+
+    /**
+     * Muestra todos los creditos(Cerrados y Abiertos)
+     * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
+     * ||Tipopago
+     */
+    public void verCreditos() {//Bueno+
+        try {
+            String VerCreditos = readSql("../monicaticoo/src/"
+                    + "sql_files/VerCreditos.sql");
+            ResultSet rs = statement.executeQuery(VerCreditos);
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getInt(2) + "||" + rs.getString(3) + "||"
+                        + rs.getInt(4) + "||" + rs.getString(5) + "||"
+                        + rs.getString(6));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al ver creditos");
+        }
+    }
+
+    /**
+     * Muestra todos los creditos pendientes(Abiertos)
+     * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
+     * ||Tipopago
+     */
+    public void verCreditosPendientes() {//Bueno+
+        try {
+            String VerCreditosPendientes = readSql("../monicaticoo/src/"
+                    + "sql_files/VerCreditosPendientes.sql");
+            ResultSet rs = statement.executeQuery(VerCreditosPendientes);
+            while (rs.next()) {
+                System.out.println(rs.getString(1)
+                        + "||" + rs.getInt(2) + "||" + rs.getString(3) + "||"
+                        + rs.getInt(4) + "||" + rs.getString(5) + "||"
+                        + rs.getString(6));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al ver creditos Pendientes");
+        }
+    }
+
+    /**
+     * Ver ventas por categoria
+     *
+     * @param categoria
+     */
+    public void VentasProductoPorCategoriaFecha(int categoria, String fechaInicial,String fechaFinal) {
+        try {
+            String ventasProductoPorCategoria = this.readSql("../monicaticoo/src/"
+                    + "sql_files/VentasProductoPorCategoriaYFecha.sql");
+            PreparedStatement stm = conection.prepareStatement(ventasProductoPorCategoria);
+            stm.setInt(1,categoria);
+            stm.setString(2,fechaInicial);
+            stm.setString(3,fechaFinal);
+            ResultSet resultset = stm.executeQuery();
+
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1)
+                        + "||" + resultset.getInt(2) + "||"
+                        + resultset.getString(3) + "||" + resultset.getString(4)
+                        + "||" + resultset.getInt(5));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al ver Ventas Producto Por Categoria");
+        }
+    }
+
     public void consultarProducto(String idProducto) {//esta bien
         try {
             String valorInventario = this.readSql("../monicaticoo/src/"
@@ -217,7 +349,6 @@ public class Direct_Control_BD {
             System.out.println("Error al insertar movimiento");
         }
     }
-
 
     public void cantidadDeProductos() {//esta bien
         try {
@@ -279,7 +410,6 @@ public class Direct_Control_BD {
 
     }
 
-
     public void verProductosSinCategoriaDeUnInv(String descripcionDeUnInv) {//esta bien
         try {
 
@@ -337,7 +467,6 @@ public class Direct_Control_BD {
         }
 
     }
-
 
     /**
      * Dado un idVendedor muestra los detalles de las ventas realizadas por este
