@@ -24,6 +24,8 @@ public class main {
         
        // pruebaOscar = new PruebaOscar(AdministradorBD);
        AdministradorBD.VentasProductoPorCategoriaFecha(1,"2012-02-02","2014-02-06");
+       //Fecha, Descuento, TipoPago, TotalFacturado, idCliente, idVendedor, Estado, Nota) 
+       
        
     }
 
