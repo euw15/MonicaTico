@@ -529,7 +529,8 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Crear una factura y llama al metodo cantidad factura
+     * Crear una factura retorna el ultimo idFactura si no hay errores,de lo
+     * contrario 0
      *
      * @param descuento
      * @param tipoPago
@@ -538,9 +539,10 @@ public class Direct_Control_BD {
      * @param estado
      * @param nota
      */
-    public void crearFactura(int descuento, String tipoPago, int idCliente,
+    public int crearFactura(int descuento, String tipoPago, int idCliente,
             int idVendedor, String estado, String nota,
             int TotalFacturado) {//Revisado+
+        int result = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -548,9 +550,8 @@ public class Direct_Control_BD {
         try {
             String CrearFactura = this.readSql("../monicaticoo/src/"
                     + "sql_files/CrearFactura.sql");
-            PreparedStatement stm = conection.prepareStatement
-        (CrearFactura,statement.RETURN_GENERATED_KEYS);
-           
+            PreparedStatement stm = conection.prepareStatement(CrearFactura, statement.RETURN_GENERATED_KEYS);
+
             stm.setInt(1, descuento);
             stm.setString(2, tipoPago);
             stm.setInt(3, idCliente);
@@ -561,13 +562,40 @@ public class Direct_Control_BD {
             stm.setInt(8, TotalFacturado);
             stm.executeUpdate();
             ResultSet rs = stm.getGeneratedKeys();
-            while(rs.next()){
-                System.out.println(rs.getInt(1));
-            }
+            rs.next();
+            result = rs.getInt(1);
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error al crear Factura");
 
+        }
+        return result;
+    }
+
+    /**
+     * Crea ProductoCantidadFactura
+     *
+     * @param idFactura
+     * @param idProductoFact
+     * @param idVersionFact
+     * @param cantidad
+     * @param precioVenta
+     */
+    public void crearProductoCantidadFactura(int idFactura, String idProductoFact,
+            int idVersionFact, int cantidad, int precioVenta) {//Revisado++
+        try {
+            String CrearProductoCantidadFactura = readSql("../monicaticoo/src/"
+                    + "sql_files/CrearProductoCantidadFactura.sql");
+            PreparedStatement stm = conection.prepareStatement(CrearProductoCantidadFactura);
+            stm.setInt(1, idFactura);
+            stm.setString(2, idProductoFact);
+            stm.setInt(3, idVersionFact);
+            stm.setInt(4, cantidad);
+            stm.setInt(5, precioVenta);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al  crear Producto Cantidad Factura");
         }
 
     }

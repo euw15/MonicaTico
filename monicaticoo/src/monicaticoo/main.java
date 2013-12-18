@@ -18,13 +18,13 @@ public class main {
         Direct_Control_BD AdministradorBD;
         Setting_Up_BD setting = new Setting_Up_BD();
 
-       
         AdministradorBD = new Direct_Control_BD(setting.getConection(),
                 setting.getStatement());
-        
-       // pruebaOscar = new PruebaOscar(AdministradorBD);
+
+        // pruebaOscar = new PruebaOscar(AdministradorBD);
 //       AdministradorBD.VentasProductoPorCategoriaFecha(1,"2012-02-02","2014-02-06");
-       AdministradorBD.crearFactura(10, "Tarjeta",1, 4, "Act", "AlgunaNota",10000);
+//        System.out.println(AdministradorBD.crearFactura(10, "Tarjeta",1, 4, "Act", "AlgunaNota",10000));
+        //AdministradorBD.crearProductoCantidadFactura(1, "HD2001", 606, 1000, 10);
     }
 
 }
