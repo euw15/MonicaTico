@@ -63,8 +63,8 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene todos los productos que estan agotados en el lugar del
-     * inventario elegido
+     * Obtiene todos los productos que estan agotados en el lugar del inventario
+     * elegido
      */
     public void verProductosAgotados(String UbicacionInv) {//esta bien
         try {
@@ -86,16 +86,14 @@ public class Direct_Control_BD {
         }
 
     }
-    
+
     /**
-     * @param idCLiente
-     * Este metodo da como resultados todas las ventas hechas
-     * a un determinado cliente
-     * 
-     * El resultado es el sig:
-     * Fecha, Descripcion , Monto
+     * @param idCLiente Este metodo da como resultados todas las ventas hechas a
+     * un determinado cliente
+     *
+     * El resultado es el sig: Fecha, Descripcion , Monto
      */
-      public void consultarVentasXCliente(int idCliente) {
+    public void consultarVentasXCliente(int idCliente) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
@@ -103,7 +101,7 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idCliente);
             stm.setInt(2, idCliente);
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
@@ -117,17 +115,14 @@ public class Direct_Control_BD {
         }
 
     }
-      
-      /**
-     * @param idVendedor
-     * Este metodo da como resultados todas las ventas hechas
+
+    /**
+     * @param idVendedor Este metodo da como resultados todas las ventas hechas
      * a por determinado vendedor
-     * 
-     * El resultado es el sig:
-     * Fecha, Descripcion , Monto
+     *
+     * El resultado es el sig: Fecha, Descripcion , Monto
      */
-      
-      public void consultarVentasXVendedor(int idVendedor) {
+    public void consultarVentasXVendedor(int idVendedor) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
@@ -135,7 +130,7 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idVendedor);
             stm.setInt(2, idVendedor);
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
@@ -149,30 +144,28 @@ public class Direct_Control_BD {
         }
 
     }
-      /**
-       * 
-       * @param idProducto
-       * 
-       * Consulta todas las ventas que se le han hecho a un producto
-       * 
-       */
-      
-      
-      public void consultarVentasXProducto(int idProducto) {
+
+    /**
+     *
+     * @param idProducto
+     *
+     * Consulta todas las ventas que se le han hecho a un producto
+     *
+     */
+    public void consultarVentasXProducto(int idProducto) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarVentasXProducto.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idProducto);
-            
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getInt(2) + "||"
-                        + resultset.getInt(3)+"||"+ resultset.getInt(4));
+                        + resultset.getInt(3) + "||" + resultset.getInt(4));
             }
 
         } catch (Exception e) {
@@ -180,21 +173,19 @@ public class Direct_Control_BD {
         }
 
     }
-      
-      /**
-       * 
-       * @param idCliente 
-       */
-      
-      public void consultarPagosCliente(int idCliente) {
+
+    /**
+     *
+     * @param idCliente
+     */
+    public void consultarPagosCliente(int idCliente) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarPagosCliente.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idCliente);
-            
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
@@ -208,28 +199,26 @@ public class Direct_Control_BD {
         }
 
     }
-      
-      /**
-       * Da todas las ventas de un tipo de pago
-       * @param TipoDePago 
-       * Devuelve
-       * Fecha,Factura,Cantidad,Precio
-       */
-      public void consultarVentasXTipoPago(String TipoDePago) {
+
+    /**
+     * Da todas las ventas de un tipo de pago
+     *
+     * @param TipoDePago Devuelve Fecha,Factura,Cantidad,Precio
+     */
+    public void consultarVentasXTipoPago(String TipoDePago) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarVentasXTipoPago.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setString(1, TipoDePago);
-            
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getInt(2) + "||"
-                        + resultset.getInt(3)+"||"+ resultset.getInt(4));
+                        + resultset.getInt(3) + "||" + resultset.getInt(4));
             }
 
         } catch (Exception e) {
@@ -237,29 +226,28 @@ public class Direct_Control_BD {
         }
 
     }
-      
-      /**
-       * 
-       * @param idVendedor
-       * 
-       * 
-       */
-      public void consultarVentasXVendedorYCliente(int idVendedor) {
+
+    /**
+     *
+     * @param idVendedor
+     *
+     *
+     */
+    public void consultarVentasXVendedorYCliente(int idVendedor) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarVentasXVendedorYCliente.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idVendedor);
-            
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getString(2) + "||"
-                        + resultset.getInt(3)+"||"+ resultset.getString(4)+
-                "||"+ resultset.getString(5));
+                        + resultset.getInt(3) + "||" + resultset.getString(4)
+                        + "||" + resultset.getString(5));
             }
 
         } catch (Exception e) {
@@ -267,29 +255,28 @@ public class Direct_Control_BD {
         }
 
     }
-      
-      /**
-       * 
-       * @param idProducto 
-       */
-       public void consultarMovimientosProductos(int idProducto) {
+
+    /**
+     *
+     * @param idProducto
+     */
+    public void consultarMovimientosProductos(int idProducto) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarMovimientosProductos.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idProducto);
-            
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getString(2) + "||"
-                        + resultset.getString(3)+"||"+ resultset.getString(4)+
-                "||"+ resultset.getInt(5)+
-                "||"+ resultset.getInt(6)+
-                "||"+ resultset.getString(7));
+                        + resultset.getString(3) + "||" + resultset.getString(4)
+                        + "||" + resultset.getInt(5)
+                        + "||" + resultset.getInt(6)
+                        + "||" + resultset.getString(7));
             }
 
         } catch (Exception e) {
@@ -297,8 +284,8 @@ public class Direct_Control_BD {
         }
 
     }
-       
-       public void cierreDeVentasXFecha(String FechaInicio,String FechaFinal) {
+
+    public void cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
@@ -308,7 +295,7 @@ public class Direct_Control_BD {
             stm.setString(2, FechaFinal);
             stm.setString(3, FechaInicio);
             stm.setString(4, FechaFinal);
-            
+
             ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
@@ -322,8 +309,6 @@ public class Direct_Control_BD {
         }
 
     }
-      
-    
 
     /**
      * Recibe un arreglo con todos los atributos necesarios para ingresar un
@@ -513,18 +498,22 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Ver ventas por categoria
+     * Muestra la venta de los productos pertenecientes a una categoria en un
+     * rango de fechas
      *
      * @param categoria
+     * @param fechaInicial
+     * @param fechaFinal
      */
-    public void VentasProductoPorCategoriaFecha(int categoria, String fechaInicial,String fechaFinal) {
+    public void VentasProductoPorCategoriaFecha(int categoria,
+            String fechaInicial, String fechaFinal) {//Revisado++
         try {
             String ventasProductoPorCategoria = this.readSql("../monicaticoo/src/"
                     + "sql_files/VentasProductoPorCategoriaYFecha.sql");
             PreparedStatement stm = conection.prepareStatement(ventasProductoPorCategoria);
-            stm.setInt(1,categoria);
-            stm.setString(2,fechaInicial);
-            stm.setString(3,fechaFinal);
+            stm.setInt(1, categoria);
+            stm.setString(2, fechaInicial);
+            stm.setString(3, fechaFinal);
             ResultSet resultset = stm.executeQuery();
 
             while (resultset.next()) {
@@ -537,6 +526,50 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("Error al ver Ventas Producto Por Categoria");
         }
+    }
+
+    /**
+     * Crear una factura y llama al metodo cantidad factura
+     *
+     * @param descuento
+     * @param tipoPago
+     * @param idCliente
+     * @param idVendedor
+     * @param estado
+     * @param nota
+     */
+    public void crearFactura(int descuento, String tipoPago, int idCliente,
+            int idVendedor, String estado, String nota,
+            int TotalFacturado) {//Revisado+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String fecha = dateFormat.format(date);
+
+        try {
+            String CrearFactura = this.readSql("../monicaticoo/src/"
+                    + "sql_files/CrearFactura.sql");
+            PreparedStatement stm = conection.prepareStatement
+        (CrearFactura,statement.RETURN_GENERATED_KEYS);
+           
+            stm.setInt(1, descuento);
+            stm.setString(2, tipoPago);
+            stm.setInt(3, idCliente);
+            stm.setInt(4, idVendedor);
+            stm.setString(5, estado);
+            stm.setString(6, nota);
+            stm.setString(7, fecha);
+            stm.setInt(8, TotalFacturado);
+            stm.executeUpdate();
+            ResultSet rs = stm.getGeneratedKeys();
+            while(rs.next()){
+                System.out.println(rs.getInt(1));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+
     }
 
     public void consultarProducto(String idProducto) {//esta bien
@@ -604,12 +637,13 @@ public class Direct_Control_BD {
 
         }
     }
+
     /**
      * Esta consulta retorna la lista de precios del inventario seleccionado
      * (Bodega o General) Ordenados por Categoria
-     * @param ubicaciondelInv 
+     *
+     * @param ubicaciondelInv
      */
-
     public void verListaDePrecioDelInventario(int ubicaciondelInv) {
 //esta bien
         try {
@@ -631,13 +665,14 @@ public class Direct_Control_BD {
         }
 
     }
-    /**
-     * Esta consulta permite ver los productos de una categoria en especifico y 
-     * de una ubicacion del inventario(Bodega o General)
-     * @param categoria
-     * @param descripcionDeUnInv 
-     */
 
+    /**
+     * Esta consulta permite ver los productos de una categoria en especifico y
+     * de una ubicacion del inventario(Bodega o General)
+     *
+     * @param categoria
+     * @param descripcionDeUnInv
+     */
     public void verProductosPorCategoriaDeUnInv(String categoria,
             String LugarInventario) {//esta bien
         try {
@@ -659,12 +694,13 @@ public class Direct_Control_BD {
         }
 
     }
+
     /**
      * Esta consulta obtiene todos los productos del inventario seleccionado
      * (Bodega o General) que no pertenecen a ninguna categoria.
-     * @param descripcionDeUnInv 
+     *
+     * @param descripcionDeUnInv
      */
-
     public void verProductosSinCategoriaDeUnInv(String lugarDeUnInv) {//estabien
         try {
 
@@ -684,17 +720,17 @@ public class Direct_Control_BD {
         }
 
     }
+
     /**
      * Esta Consulta Obtiene el movimiento de un producto por el termino de
-     * facturacion. Se le debe proporcionar el lugar del inventario
-     * (Bodega o General)
-     * y la fecha de rango de busqueda.
+     * facturacion. Se le debe proporcionar el lugar del inventario (Bodega o
+     * General) y la fecha de rango de busqueda.
+     *
      * @param lugarDeUnInv
      * @param fechaInicio
-     * @param fechaFinal 
+     * @param fechaFinal
      */
-    public void verMovProductosFacturados(String lugarDeUnInv,String fechaInicio
-            ,String fechaFinal) {//esta bien
+    public void verMovProductosFacturados(String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
 
             String verMovProductosFacturados = this.readSql("../monicaticoo/"
@@ -703,11 +739,11 @@ public class Direct_Control_BD {
                     = this.conection.prepareStatement(verMovProductosFacturados);
             stm.setString(1, lugarDeUnInv);
             stm.setString(2, fechaInicio);
-            stm.setString(3,  fechaFinal);
+            stm.setString(3, fechaFinal);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 System.out.println(rs.getString(1)
-                        + "||" + rs.getString(2) + "||" + rs.getInt(3)+ "||"
+                        + "||" + rs.getString(2) + "||" + rs.getInt(3) + "||"
                         + rs.getString(4));
             }
         } catch (Exception e) {
@@ -717,15 +753,16 @@ public class Direct_Control_BD {
         }
 
     }
+
     /**
-     * Esta consulta muestra todos los movimientos de los productos ordenados 
+     * Esta consulta muestra todos los movimientos de los productos ordenados
      * por fecha producto y el concepto del movimiento
+     *
      * @param lugarDeUnInv
      * @param fechaInicio
-     * @param fechaFinal 
+     * @param fechaFinal
      */
-    public void verMovProductosOrdenadosPorTipo(String lugarDeUnInv,String fechaInicio
-            ,String fechaFinal) {//esta bien
+    public void verMovProductosOrdenadosPorTipo(String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
 
             String verMovProductosFacturadosPorTipo = this.readSql("../monicaticoo/"
@@ -734,11 +771,11 @@ public class Direct_Control_BD {
                     = this.conection.prepareStatement(verMovProductosFacturadosPorTipo);
             stm.setString(1, lugarDeUnInv);
             stm.setString(2, fechaInicio);
-            stm.setString(3,  fechaFinal);
+            stm.setString(3, fechaFinal);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 System.out.println(rs.getString(1)
-                        + "||" + rs.getString(2) + "||" + rs.getString(3)+ "||"
+                        + "||" + rs.getString(2) + "||" + rs.getString(3) + "||"
                         + rs.getString(4));
             }
         } catch (Exception e) {
@@ -748,16 +785,17 @@ public class Direct_Control_BD {
         }
 
     }
+
     /**
      * Esta consulta devuelve el movimiento de un producto en especifico
+     *
      * @param idProducto
      * @param lugarDeUnInv
      * @param fechaInicio
-     * @param fechaFinal 
+     * @param fechaFinal
      */
     public void verMovProductoOrdenadoPorTipo(String idProducto,
-            String lugarDeUnInv,String fechaInicio
-            ,String fechaFinal) {//esta bien
+            String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
 
             String verMovProductoOrdenadoPorTipo = this.readSql("../monicaticoo/"
@@ -767,19 +805,20 @@ public class Direct_Control_BD {
             stm.setString(1, idProducto);
             stm.setString(2, lugarDeUnInv);
             stm.setString(3, fechaInicio);
-            stm.setString(4,  fechaFinal);
+            stm.setString(4, fechaFinal);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 System.out.println(rs.getString(1)
-                        + "||" + rs.getString(2) + "||" + rs.getString(3)+ "||"
+                        + "||" + rs.getString(2) + "||" + rs.getString(3) + "||"
                         + rs.getString(4));
             }
         } catch (Exception e) {
             System.out.println("Error al obtener el movimiento");
 
         }
-       
+
     }
+
     public void modificarProducto(String idProducto, String nombre,
             int precio, int idCategoria) {//esta bien
         try {
@@ -805,8 +844,7 @@ public class Direct_Control_BD {
             String BuscarCategoriaPorDescripcion = this.readSql("../monic"
                     + "aticoo/src/sql_files/BuscarCategoriaPorDescripcion.sql");
             PreparedStatement stm
-                    = this.conection.prepareStatement
-        (BuscarCategoriaPorDescripcion);
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setString(1, descripcionDeCategoria);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {

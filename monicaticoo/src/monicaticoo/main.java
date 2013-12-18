@@ -23,8 +23,8 @@ public class main {
                 setting.getStatement());
         
        // pruebaOscar = new PruebaOscar(AdministradorBD);
-       AdministradorBD.VentasProductoPorCategoriaFecha(1,"2012-02-02","2014-02-06");
-       
+//       AdministradorBD.VentasProductoPorCategoriaFecha(1,"2012-02-02","2014-02-06");
+       AdministradorBD.crearFactura(10, "Tarjeta",1, 4, "Act", "AlgunaNota",10000);
     }
 
 }
