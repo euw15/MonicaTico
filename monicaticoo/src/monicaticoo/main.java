@@ -18,7 +18,6 @@ public class main {
         Direct_Control_BD AdministradorBD;
         Setting_Up_BD setting = new Setting_Up_BD();
 
-       
         AdministradorBD = new Direct_Control_BD(setting.getConection(),
                 setting.getStatement());
         

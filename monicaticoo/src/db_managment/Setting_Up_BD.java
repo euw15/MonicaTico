@@ -23,7 +23,7 @@ public final class Setting_Up_BD {
     private String driver= "com.mysql.jdbc.Driver";
     private String database= ("jdbc:mysql://localhost:3306/monicatico");
     private String user = "root";
-    private String pass = "1515";
+    private String pass = "123456";
     private Connection conection;
     private Statement statement;
     /**
