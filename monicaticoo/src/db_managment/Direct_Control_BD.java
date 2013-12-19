@@ -991,6 +991,7 @@ VALUES (?, ?, ?, ?, ?, ?);
                 String datos2=resultset.getString(2);
                 int datos3=resultset.getInt(3);
 
+                
             }
         } catch (SQLException ex) {
             System.out.println("Error al recorrer los cierre de ventas");
