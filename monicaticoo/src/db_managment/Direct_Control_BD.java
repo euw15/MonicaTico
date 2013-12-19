@@ -996,6 +996,7 @@ VALUES (?, ?, ?, ?, ?, ?);
         } catch (SQLException ex) {
             System.out.println("Error al recorrer los cierre de ventas");
         }
+        
     }
 }
    
