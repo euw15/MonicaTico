@@ -11,13 +11,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -101,11 +98,11 @@ public class Direct_Control_BD {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarVentasXCliente.sql");
-            PreparedStatement stm = this.conection.prepareStatement(dato);
+            PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idCliente);
             stm.setInt(2, idCliente);
 
-            ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
@@ -129,12 +126,12 @@ public class Direct_Control_BD {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
-                    + "consultarVentasxVendedor.sql");
+                    + "consultarVentasXVendedor.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idVendedor);
             stm.setInt(2, idVendedor);
 
-            ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
@@ -155,15 +152,15 @@ public class Direct_Control_BD {
      * Consulta todas las ventas que se le han hecho a un producto
      *
      */
-    public void consultarVentasXProducto(String idProducto) {
+    public void consultarVentasXProducto(int idProducto) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarVentasXProducto.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
-            stm.setString(1, idProducto);
+            stm.setInt(1, idProducto);
 
-            ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
@@ -216,7 +213,7 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setString(1, TipoDePago);
 
-            ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
@@ -244,7 +241,7 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(dato);
             stm.setInt(1, idVendedor);
 
-            ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
@@ -254,7 +251,7 @@ public class Direct_Control_BD {
             }
 
         } catch (Exception e) {
-            System.out.println("Error al obtener las ventas x vendedor y cliente");
+            System.out.println("Error al obtener las ventas a un cliente");
         }
 
     }
@@ -263,15 +260,15 @@ public class Direct_Control_BD {
      *
      * @param idProducto
      */
-    public void consultarMovimientosProductos(String idProducto) {
+    public void consultarMovimientosProductos(int idProducto) {
         try {
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
                     + "consultarMovimientosProductos.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
-            stm.setString(1, idProducto);
+            stm.setInt(1, idProducto);
 
-            ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
                 System.out.println(resultset.getString(1)
@@ -288,35 +285,28 @@ public class Direct_Control_BD {
 
     }
 
-    public ResultSet cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
+    public void cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
         try {
-           
             String dato = this.readSql("../monicaticoo/src/"
                     + "sql_files/"
-                    + "CierreDeVentasxFecha.sql");
-            PreparedStatement stm = this.conection.prepareStatement(dato);
+                    + "CierreDeVentasXFecha.sql");
+            PreparedStatement stm = conection.prepareStatement(dato);
             stm.setString(1, FechaInicio);
             stm.setString(2, FechaFinal);
             stm.setString(3, FechaInicio);
-             stm.setString(4, FechaFinal);
+            stm.setString(4, FechaFinal);
 
-            ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery(dato);
             //Imprime el resultado obtenido de ver productos agotados
             while (resultset.next()) {
-              
                 System.out.println(resultset.getString(1)
                         + "||" + resultset.getString(2) + "||"
                         + resultset.getInt(3));
-                
             }
-          return resultset;
 
         } catch (Exception e) {
-            System.out.println("Error al obtener las ventas x fechha");
-            return null;
+            System.out.println("Error al obtener las ventas a un cliente");
         }
-        
-        
 
     }
 
@@ -539,7 +529,8 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Crear una factura y llama al metodo cantidad factura
+     * Crear una factura retorna el ultimo idFactura si no hay errores,de lo
+     * contrario 0
      *
      * @param descuento
      * @param tipoPago
@@ -548,9 +539,10 @@ public class Direct_Control_BD {
      * @param estado
      * @param nota
      */
-    public void crearFactura(int descuento, String tipoPago, int idCliente,
+    public int crearFactura(int descuento, String tipoPago, int idCliente,
             int idVendedor, String estado, String nota,
             int TotalFacturado) {//Revisado+
+        int result = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -558,9 +550,8 @@ public class Direct_Control_BD {
         try {
             String CrearFactura = this.readSql("../monicaticoo/src/"
                     + "sql_files/CrearFactura.sql");
-            PreparedStatement stm = conection.prepareStatement
-        (CrearFactura,statement.RETURN_GENERATED_KEYS);
-           
+            PreparedStatement stm = conection.prepareStatement(CrearFactura, statement.RETURN_GENERATED_KEYS);
+
             stm.setInt(1, descuento);
             stm.setString(2, tipoPago);
             stm.setInt(3, idCliente);
@@ -571,13 +562,40 @@ public class Direct_Control_BD {
             stm.setInt(8, TotalFacturado);
             stm.executeUpdate();
             ResultSet rs = stm.getGeneratedKeys();
-            while(rs.next()){
-                System.out.println(rs.getInt(1));
-            }
+            rs.next();
+            result = rs.getInt(1);
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error al crear Factura");
 
+        }
+        return result;
+    }
+
+    /**
+     * Crea ProductoCantidadFactura
+     *
+     * @param idFactura
+     * @param idProductoFact
+     * @param idVersionFact
+     * @param cantidad
+     * @param precioVenta
+     */
+    public void crearProductoCantidadFactura(int idFactura, String idProductoFact,
+            int idVersionFact, int cantidad, int precioVenta) {//Revisado++
+        try {
+            String CrearProductoCantidadFactura = readSql("../monicaticoo/src/"
+                    + "sql_files/CrearProductoCantidadFactura.sql");
+            PreparedStatement stm = conection.prepareStatement(CrearProductoCantidadFactura);
+            stm.setInt(1, idFactura);
+            stm.setString(2, idProductoFact);
+            stm.setInt(3, idVersionFact);
+            stm.setInt(4, cantidad);
+            stm.setInt(5, precioVenta);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al  crear Producto Cantidad Factura");
         }
 
     }
@@ -891,112 +909,5 @@ public class Direct_Control_BD {
         }
 
     }
-   /**
-    * 
-    * @param Fecha
-    * @param TipoPago
-    * @param TotalFacturado
-    * @param idCliente
-    * @param idVendedor
-    * @param Nota 
-    * 
-    * INSERT INTO devolucion (Fecha, TipoPago, 
-TotalFacturado, idClienteDev, idVendedorDev, Nota) 
-VALUES (?, ?, ?, ?, ?, ?);
-    */
-    public int insertarDevoluciones(String Fecha, String TipoPago, int TotalFacturado,int idCliente
-    ,int idVendedor, String Nota) {
-        try {
-            String devolucion = this.readSql("../monicaticoo/src/sql_files/"
-                    + "insertarDevolucion.sql");
-            PreparedStatement stm = this.conection.prepareStatement(devolucion, statement.RETURN_GENERATED_KEYS);
-            stm.setString(1, Fecha);
-            stm.setString(2, TipoPago);
-            stm.setInt(3, TotalFacturado);
-            stm.setInt(4, idCliente);
-            stm.setInt(5, idVendedor);
-            stm.setString(6, Nota);
-            stm.executeUpdate();
-            
-            ResultSet rs = stm.getGeneratedKeys();
 
-            rs.next();
-
-            int idDevolucion = rs.getInt(1);
-            return idDevolucion;
-
-        } catch (Exception e) {
-            System.out.println("Error al insertar Devoluciones");
-            return 0;
-        }
-    }
-    /**
-     * 
-     * @param idProductoDev
-     * @param Cantidad
-     * @param idDevolucion
-     * @param idCliente
-     * @param PrecioDev 
-     * 
-     * idProductoDev, Cantidad, idDevolucion, idVersionDev, PrecioDev
-     */
-    public void insertarproductocantidaddev(String idProductoDev, int Cantidad, int idDevolucion,int idCliente
-    ,int PrecioDev) {
-        try {
-            String devolucion = this.readSql("../monicaticoo/src/sql_files/"
-                    + "insertarProductoCantidadDev.sql");
-            PreparedStatement stm = this.conection.prepareStatement(devolucion);
-            stm.setString(1, idProductoDev);
-            stm.setInt(2, Cantidad);
-            stm.setInt(3, idDevolucion);
-            stm.setInt(4, idCliente);
-            stm.setInt(5, PrecioDev);
-            stm.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("Error al insertar producto cantidad dev");
-        }
-    }
-    
-    //Fecha, Detalle, idTipoMovimiento, CantidadMovida, Balance, idProductoMovimiento,
-    //idLugarMovimiento
-    
-    public void insertarmovimiento(String Fecha, String Detalle, int idTipoMovimiento,
-    int CantidadMovida, int Balance, String idProductoMovimiento,int idLugarMovimiento) {
-        try {
-            String devolucion = this.readSql("../monicaticoo/src/sql_files/"
-                    + "insertarMovimiento.sql");
-            PreparedStatement stm = this.conection.prepareStatement(devolucion);
-            stm.setString(1, Fecha);
-            stm.setString(2, Detalle);
-            stm.setInt(3, idTipoMovimiento);
-            stm.setInt(4, CantidadMovida);
-            stm.setInt(5, Balance);
-            stm.setString(6, idProductoMovimiento);
-            stm.setInt(7, idLugarMovimiento);
-            stm.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("Error al insertar Devoluciones");
-        }
-    }
-    
-    public void crearCierreDeCaja(String FechaInicio, String FechaFinal,int Cajero,String NombreCaja
-    , String Observacines)
-    {
-        ResultSet resultset = cierreDeVentasXFecha(FechaInicio,FechaFinal);
-        try {
-            while (resultset.next()) {
-                String datos1=resultset.getString(1);
-                String datos2=resultset.getString(2);
-                int datos3=resultset.getInt(3);
-
-                
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error al recorrer los cierre de ventas");
-        }
-        
-    }
 }
-   
